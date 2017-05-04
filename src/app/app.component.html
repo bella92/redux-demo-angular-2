@@ -1,3 +1,22 @@
 <h1>
-  {{title}}
+  Redux demo
 </h1>
+
+<div class="form-inline">
+  <input class="form-control" type="text" [(ngModel)]="text" />
+  <input class="btn" type="button" (click)="addTodo()" value="Add" />
+</div>
+
+<br />
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let todo of todos; let i = index">
+    <span [style.text-decoration]="todo.completed ? 'line-through' : 'none'">{{todo.text}}</span>
+    <input class="btn" type="button" (click)="removeTodo(i)" value="Remove" />
+    <input class="btn" type="button" (click)="toggleTodo(i)" value="Toggle" />
+  </li>
+</ul>
+
+<input type="button" (click)="setVisibilityFilter('SHOW_ALL')" class="btn" [class.btn-primary]="visibilityFilter === 'SHOW_ALL'" value="Show All" />
+<input type="button" (click)="setVisibilityFilter('SHOW_COMPLETED')" class="btn" [class.btn-primary]="visibilityFilter === 'SHOW_COMPLETED'" value="Show Completed" />
+<input type="button" (click)="setVisibilityFilter('SHOW_ACTIVE')" class="btn" [class.btn-primary]="visibilityFilter === 'SHOW_ACTIVE'" value="Show Active" />
